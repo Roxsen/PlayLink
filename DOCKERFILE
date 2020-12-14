@@ -1,0 +1,10 @@
+FROM mingc/android-build-box:latest
+MAINTAINER roxsen <mikesmith.tech>
+
+RUN sudo apt-get install fdroidserver cron && python3 -m pip install gplaycli
+
+COPY production.conf /etc/supervisor/conf.d/
+
+EXPOSE 80
+
+CMD ["/usr/bin/supervisord","-n"]
